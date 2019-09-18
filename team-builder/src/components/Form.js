@@ -1,4 +1,11 @@
 import React, {useState} from 'react';
+import styled from 'styled-components';
+
+//styling button
+const buttonStyle = styled.div `
+    margin-top: 3%;
+    `;
+
 
 const Form = props => {
 
