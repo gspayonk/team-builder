@@ -1,10 +1,10 @@
 import React, {useState} from 'react';
-import styled from 'styled-components';
+// import styled from 'styled-components';
 
 //styling button
-const buttonStyle = styled.div `
-    margin-top: 3%;
-    `;
+// const buttonStyle = styled.div `
+//     margin-top: 3%;
+//     `;
 
 
 const Form = props => {
@@ -12,13 +12,13 @@ const Form = props => {
     console.log(props);
     const [member, setMember] = useState ({
         name: '',
-        role: '',
         email: '',
-        id: null
+        role: ''
+
     });
 
-const handleChanges = event => {
-    setMember({...member, [event.target.name]: event.target.value});
+const handleAddition = event => {
+    setMember({...member, [event.target.name]: event.target.value });
     console.log(member);
 }
 
@@ -26,9 +26,10 @@ const submitForm = event => {
     event.preventDefault();
     props.add({...member, id: Math.random()});
 
-    setMember({name:'', role: '', email: '', id: null});
+    setMember({name:'', email: '', role: ''});
     console.log(event.target.value);
 };
+
 
 return (
     <form onSubmit = {submitForm}>
@@ -42,19 +43,9 @@ return (
         <input
             type='text'
             name= 'name'
-            onChange = {handleChanges}
+            onChange = {handleAddition}
             placeholder = 'Enter your name'
             value= {member.name}
-        />
-        </label>
-
-        <label htmlFor='role'>
-        Role: {' '}
-        <input
-            name='text'
-            onChange = {handleChanges}
-            placeholder = 'Enter your role'
-            value = {member.role}
         />
         </label>
 
@@ -62,11 +53,22 @@ return (
         E-mail: {' '}
         <input
             name='text'
-            onChange = {handleChanges}
+            onChange = {handleAddition}
             placeholder = 'Enter your e-mail'
             value = {member.email}
         />
         </label>
+
+        <label htmlFor='role'>
+        Role: {' '}
+        <input
+            name='text'
+            onChange = {handleAddition}
+            placeholder = 'Enter your role'
+            value = {member.role}
+        />
+        </label>
+
         </div>
         <button>Add Member</button>
     </form>

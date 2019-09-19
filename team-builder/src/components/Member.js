@@ -1,13 +1,13 @@
 import React, {useState} from 'react';
-import Form from './Form';
 
-const Member = props =>{
-    const {name, role, email, id} = props.member;
+
+const Member = props => {
+    const {name, email, role, id} = props.member;
 
     const[member, setMember] = useState({
         name: name,
-        role: role,
         email: email,
+        role: role,
         id: id
     });
 
@@ -18,30 +18,66 @@ const Member = props =>{
     };
 
     const inputHandler = event => {
-        setMember({...member, [event.target.name]: event.target.value});
         console.log(inputHandler)
+        setMember({...member, [event.target.name]: event.target.value});
     };
 
-    const handleUpdate = event => {
+    const handleNewMember = event => {
         event.preventDefault();
         props.update(member);
         setNewMember(false);
     };
 
     return newMember ? (
-        <Form />) : (
+        <form onSubmit={handleNewMember}>
+        <h1>Add Member</h1>
+        <div>
+            <label htmlFor="Name">
+                Name:{" "}
+            <input
+                type="text"
+                value={member.name}
+                onChange={handleNewMember}
+                name="name"
+            />
+            </label>
+
+            <label htmlFor="Email">
+                Email:{" "}
+            <input
+                type="text"
+                value={member.email}
+                onChange={inputHandler}
+                name="email"
+            />
+            </label>
+
+        <label htmlFor="Role">
+            Role:{" "}
+        <input
+            type="text"
+            value={member.role}
+            onChange={inputHandler}
+            name="role"
+        />
+        </label>
+
+        </div>
+        <button>Add Member</button>
+    </form>
+    ) : (
         <div>
             <h3>Name</h3>
             <p>{name}</p>
-            <h3>Role</h3>
-            <p>{role}</p>
             <h3>Email</h3>
             <p>{email}</p>
+            <h3>Role</h3>
+            <p>{role}</p>
             
-            <button onClick={handleAddition}>Edit</button>
+            <button onClick = {handleAddition} >Edit Member Info </button>
         </div>
         );
     
-}
+};
 
 export default Member;

@@ -10,7 +10,8 @@ function App() {
 
   const enterMember = member => setMembers([...members, member]);
 
-  const update = thisMember =>
+
+  const updateMember = thisMember =>
     setMembers ([
       ...members.map(member => {
         if (member.id === thisMember.id){
@@ -27,7 +28,7 @@ function App() {
     <div className="App">
 
       {members.map((member, index) => (
-        <Member member = {member} key = {index} update = {update}/>
+        <Member member = {member} key = {index} update = {updateMember}/>
       ))}
 
       <Form add={enterMember}/>
